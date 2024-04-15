@@ -1,5 +1,6 @@
 package com.java.practice.ratelimit.service.impl;
 
+import com.java.practice.ratelimit.enumration.CustomPricePlan;
 import com.java.practice.ratelimit.enumration.PricingPlan;
 import com.java.practice.ratelimit.enumration.UserPlan;
 import com.java.practice.ratelimit.service.PricingPlanService;
@@ -22,8 +23,17 @@ public class PricingPlanServiceImpl implements PricingPlanService {
 
     private Bucket newBucket(UserPlan userPlan) {
         final PricingPlan pricingPlan = PricingPlan.resolvePricingFromUserPlan(userPlan);
-        return Bucket.builder().addLimit(pricingPlan.getLimit()).build();
+        return Bucket.builder()
+                .addLimit(pricingPlan.getLimit()).build();
     }
+
+    /*
+    private Bucket newCustomBucket(UserPlan userPlan) {
+        final CustomPricePlan customPricePlan = CustomPricePlan.resolvePricingFromUserPlan(userPlan);
+
+        return Bucket.builder()
+                    .addLimit(customPricePlan.getLimit()).build();
+    }*/
 
     @Override
     public Bucket resolveBucketByIp(String ipAddress) {

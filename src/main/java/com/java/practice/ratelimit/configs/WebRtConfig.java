@@ -17,7 +17,10 @@ public class WebRtConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+
         registry.addInterceptor(apiKeyRateLimitRequestInterceptor).addPathPatterns("/api/v1/api-key");
-        registry.addInterceptor(ipRateLimitRequestInterceptor).addPathPatterns("/api/v1/ip");
+
+        registry.addInterceptor(ipRateLimitRequestInterceptor).addPathPatterns("/api/v1/sign-in", "/api/v1/register", "/api/v1/sendOtp");
+
     }
 }

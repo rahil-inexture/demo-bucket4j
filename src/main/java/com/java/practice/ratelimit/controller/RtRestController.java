@@ -15,10 +15,12 @@ public class RtRestController {
         return ResponseEntity.ok().body(rtResponse(XHeader.API_KEY_DASH));
     }
 
-    @GetMapping(value = "/api/v1/ip")
+    @GetMapping(value = "/api/v1/sendOtp")
     public ResponseEntity<RtResponse> ipResponse() {
         return ResponseEntity.ok().body(rtResponse(XHeader.IP_DASH));
     }
+
+
 
     private RtResponse rtResponse(String prefix) {
         return new RtResponse()
